@@ -26,11 +26,13 @@ type ArticleParamsFormProps = {
 		backgroundColor: OptionType;
 	};
 	onApply: (settings: ArticleStateType) => void;
+	onReset: () => void;
 };
 
 export const ArticleParamsForm = ({
 	initialSettings,
 	onApply,
+	onReset,
 }: ArticleParamsFormProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedFont, setSelectedFont] = useState(
@@ -146,7 +148,12 @@ export const ArticleParamsForm = ({
 						title='Ширина контента'
 					/>
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' htmlType='reset' type='clear' />
+						<Button
+							title='Сбросить'
+							htmlType='reset'
+							type='clear'
+							onClick={onReset}
+						/>
 						<Button title='Применить' htmlType='submit' type='apply' />
 					</div>
 				</form>

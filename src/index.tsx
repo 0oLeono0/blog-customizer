@@ -23,6 +23,10 @@ const App = () => {
 		setArticleState(settings);
 	};
 
+	const handleReset = () => {
+		setArticleState(defaultArticleState);
+	};
+
 	return (
 		<main
 			className={clsx(styles.main)}
@@ -38,6 +42,7 @@ const App = () => {
 			<ArticleParamsForm
 				initialSettings={defaultArticleState}
 				onApply={handleApply}
+				onReset={handleReset}
 			/>
 			<Article />
 		</main>
