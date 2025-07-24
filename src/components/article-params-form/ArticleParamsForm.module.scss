@@ -4,6 +4,7 @@
 	width: 616px;
 	height: 100%;
 	overflow: scroll;
+	overflow: hidden;
 	transform: translate(-616px);
 	transition: transform 0.5s ease;
 }

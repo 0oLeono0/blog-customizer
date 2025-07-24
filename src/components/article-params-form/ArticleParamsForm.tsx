@@ -2,12 +2,37 @@ import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 
 import styles from './ArticleParamsForm.module.scss';
+import clsx from 'clsx';
+import { useState, useEffect } from 'react';
 
 export const ArticleParamsForm = () => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const toggleSidebar = () => {
+		setIsOpen((prev) => !prev);
+	};
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			const target = event.target as HTMLElement;
+			if (!target.closest(`.${styles.container}`)) {
+				setIsOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
+
 	return (
 		<>
-			<ArrowButton isOpen={false} onClick={() => {}} />
-			<aside className={styles.container}>
+			<ArrowButton isOpen={isOpen} onClick={toggleSidebar} />
+			<aside
+				className={clsx(styles.container, {
+					[styles.container_open]: isOpen,
+				})}>
 				<form className={styles.form}>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' htmlType='reset' type='clear' />
