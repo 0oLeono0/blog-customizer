@@ -177,3 +177,45 @@ export const defaultArticleState = {
 };
 
 export type ArticleStateType = typeof defaultArticleState;
+
+type FormField = {
+	key: keyof ArticleStateType;
+	title: string;
+	options: OptionType[];
+	component: 'select' | 'radio';
+	name?: string;
+};
+
+export const formFields: FormField[] = [
+	{
+		key: 'fontFamilyOption',
+		title: 'Шрифт',
+		options: fontFamilyOptions,
+		component: 'select',
+	},
+	{
+		key: 'fontSizeOption',
+		title: 'Размер шрифта',
+		options: fontSizeOptions,
+		component: 'radio',
+		name: 'Размер шрифта',
+	},
+	{
+		key: 'fontColor',
+		title: 'Цвет шрифта',
+		options: fontColors,
+		component: 'select',
+	},
+	{
+		key: 'backgroundColor',
+		title: 'Цвет фона',
+		options: backgroundColors,
+		component: 'select',
+	},
+	{
+		key: 'contentWidth',
+		title: 'Ширина контента',
+		options: contentWidthArr,
+		component: 'select',
+	},
+];

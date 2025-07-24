@@ -2,15 +2,7 @@ import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 
 import styles from './ArticleParamsForm.module.scss';
-import {
-	ArticleStateType,
-	backgroundColors,
-	contentWidthArr,
-	fontColors,
-	fontFamilyOptions,
-	fontSizeOptions,
-	OptionType,
-} from 'src/constants/articleProps';
+import { ArticleStateType, formFields } from 'src/constants/articleProps';
 import { useArticleForm } from './hooks/useArticleForm';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
@@ -23,48 +15,6 @@ type ArticleParamsFormProps = {
 	onApply: (settings: ArticleStateType) => void;
 	onReset: () => void;
 };
-
-type FormField = {
-	key: keyof ArticleStateType;
-	title: string;
-	options: OptionType[];
-	component: 'select' | 'radio';
-	name?: string;
-};
-
-const formFields: FormField[] = [
-	{
-		key: 'fontFamilyOption',
-		title: 'Шрифт',
-		options: fontFamilyOptions,
-		component: 'select',
-	},
-	{
-		key: 'fontSizeOption',
-		title: 'Размер шрифта',
-		options: fontSizeOptions,
-		component: 'radio',
-		name: 'Размер шрифта',
-	},
-	{
-		key: 'fontColor',
-		title: 'Цвет шрифта',
-		options: fontColors,
-		component: 'select',
-	},
-	{
-		key: 'backgroundColor',
-		title: 'Цвет фона',
-		options: backgroundColors,
-		component: 'select',
-	},
-	{
-		key: 'contentWidth',
-		title: 'Ширина контента',
-		options: contentWidthArr,
-		component: 'select',
-	},
-];
 
 export const ArticleParamsForm = ({
 	initialSettings,
