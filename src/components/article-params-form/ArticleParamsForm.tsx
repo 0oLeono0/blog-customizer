@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Text } from 'src/ui/text';
 import { Select } from 'src/ui/select';
 import {
+	ArticleStateType,
 	backgroundColors,
 	contentWidthArr,
 	fontColors,
@@ -24,10 +25,12 @@ type ArticleParamsFormProps = {
 		contentWidth: OptionType;
 		backgroundColor: OptionType;
 	};
+	onApply: (settings: ArticleStateType) => void;
 };
 
 export const ArticleParamsForm = ({
 	initialSettings,
+	onApply,
 }: ArticleParamsFormProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedFont, setSelectedFont] = useState(
@@ -82,6 +85,18 @@ export const ArticleParamsForm = ({
 		setSelectedColor(selected);
 	};
 
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const updatedSettings = {
+			fontFamilyOption: selectedFont,
+			fontSizeOption: selectedSize,
+			fontColor: selectedColor,
+			contentWidth: selectedWidth,
+			backgroundColor: selectedBackground,
+		};
+		onApply(updatedSettings);
+	};
+
 	return (
 		<>
 			<ArrowButton isOpen={isOpen} onClick={toggleSidebar} />
@@ -89,7 +104,7 @@ export const ArticleParamsForm = ({
 				className={clsx(styles.container, {
 					[styles.container_open]: isOpen,
 				})}>
-				<form className={styles.form}>
+				<form className={styles.form} onSubmit={handleSubmit}>
 					<Text
 						as={'h2'}
 						size={31}
