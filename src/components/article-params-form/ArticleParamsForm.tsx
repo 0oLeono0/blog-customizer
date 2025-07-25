@@ -56,7 +56,7 @@ export const ArticleParamsForm = ({
 				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 				<form className={styles.form} onSubmit={handleSubmit}>
 					<Text
-						as='h3'
+						as='h2'
 						size={31}
 						weight={800}
 						fontStyle='normal'
